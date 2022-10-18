@@ -1,7 +1,8 @@
 import express, { Request, Response } from 'express';
 import db from './models';
 import dotenv from 'dotenv';
-import userRouter from './routes/moviesRoutes';
+import userRouter from './routes/userRoutes';
+import movieRouter from './routes/movieRoutes';
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ db.sequelize.sync({force: true}).then(() => {
 });
 
 app.use('/user', userRouter)
+app.use('/movies', movieRouter)
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
