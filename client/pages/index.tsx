@@ -1,7 +1,12 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useGetMoviesQuery } from '../react-query/movies/getMovies';
 
 const Home: NextPage = () => {
+  const { data, isLoading } = useGetMoviesQuery();
+
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <div>
       <Head>
@@ -11,7 +16,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <h1 className='text-red-500'>eslamkhalaf</h1>
+        <h1 className='text-red-500'>{data}</h1>
       </main>
     </div>
   );
